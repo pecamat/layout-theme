@@ -1,38 +1,142 @@
-.App {
-  text-align: center;
+:root {
+  --gap: 12px;
+  --padding: 12px;
+  --topNavHeight: 48px;
+  --leftNavWidth: 200px;
+  --contentWidth: 600px;
+  --footerHeight: 48px;
+  --navContentGap: 120px;
+  --border: rgb(225, 225, 225);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-container {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: stretch;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.width-hug {
+  width: calc(var(--contentWidth) + var(--leftNavWidth));
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.width-full {
+  width: 100%;
+}
+
+.top-nav-wrapper,
+.footer-wrapper {
+  background-color: white;
+  height: var(--topNavHeight);
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.top-nav-border {
+  border-bottom: solid 1px var(--border);
+}
+
+.footer-border {
+  border-top: solid 1px var(--border);
+}
+
+.top-nav,
+.footer {
+  padding: var(--padding);
+  display: flex;
+  gap: var(--gap);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.top-nav-width-content,
+.footer-width-content {
+  margin-left: var(--navContentGap);
+  padding: var(--padding) 0px;
+}
+
+.top-nav-width-full,
+.footer-width-full {
+  width: var(--contentWidth);
+  padding: var(--padding) 0px;
+}
+
+.left-nav {
+  position: sticky;
+  min-width: var(--leftNavWidth);
+  padding: var(--padding);
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  gap: var(--gap);
+  top: inherit;
+  height: 100vh;
+  box-sizing: border-box;
+  top: 0;
+  border-right: solid 1px var(--border);
+  
+}
+
+.left-nav::before {
+  content: "";
+  position: absolute;
+  background-color: rgb(243, 243, 243);
+  inset: 0 0 0 -1000px;
+  z-index: -1;
+}
+
+.in-content {
+  top: var(--topNavHeight);
+  height: calc(100vh - var(--topNavHeight));
+}
+
+.slot {
+  border: dashed 1px rgb(200, 200, 200);
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.horizontal {
+  min-width: calc(var(--leftNavWidth) - 2 * var(--padding));
+}
+
+.horizontal-full {
+  width: 100%;
+}
+
+.vertical {
+  height: calc(var(--topNavHeight) - 2 * var(--padding));
+}
+
+.vertical-full {
+  height: 100%;
+}
+
+.content-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.content {
+  padding: 60px 0;
+  font-size: 16px;
+  max-width: var(--contentWidth);
+  box-sizing: border-box;
+  min-height: calc(100vh - var(--topNavHeight));
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.content-gap {
+  margin-left: var(--navContentGap);
+}
+
+.flex-horizontal {
+  position: relative;
+  display: flex;
 }

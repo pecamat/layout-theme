@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Content from "./Content";
+import TopNav from "./TopNav";
+import LeftNav from "./LeftNav";
+import Footer from "./Footer";
 
-function App() {
+import "./App.css";
+
+const App = ({ width, topNavLayout, footerLayout }) => {
+  const widthClass = width === "full" ? "width-full" : "width-hug";
+  const leftNav = topNavLayout === "on-top" ? "in-content" : "";
+  const isLayoutFull = width === "full" ? true : false;
+
+  const topNav = (<TopNav width = 'full' isFull = {isLayoutFull}/>);
+  const footer = (<Footer width = 'content' isFull = {isLayoutFull}/>);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`app-container ${widthClass}`}>
+      {topNavLayout === "on-top" ? topNav : ""}
+      <div className="flex-horizontal">
+        <LeftNav height = {leftNav} />
+        <div className="content-container">
+          {topNavLayout === "in-content" ? topNav : ""}
+          <Content isFull = {isLayoutFull} />
+          {footerLayout === "in-content" ? footer : ""}
+        </div>
+      </div>
+      {footerLayout === "bottom" ? footer : ""}
     </div>
   );
-}
-
+};
 export default App;
